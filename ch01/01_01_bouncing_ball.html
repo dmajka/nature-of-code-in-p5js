@@ -1,0 +1,38 @@
+<html>
+<head>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/p5.js/0.2.22/p5.js"></script>
+
+<script>
+var x = 100;
+var y = 100;
+var xspeed = 1;
+var yspeed = 3.3;
+
+function setup() {
+  var width = 640;
+  var height = 480;
+  createCanvas(width, height);
+  background(255);
+}
+
+function draw() {
+  background(255);
+  x = x + xspeed;
+  y = y + yspeed;
+  if ((x > width-10) || (x < 10)){
+    xspeed = xspeed * -1;
+  }
+  if ((y > height-10) || (y < 10)){
+    yspeed = yspeed * -1;
+  }
+  stroke(0);
+  fill(175);
+  ellipse(x,y,16,16);
+}
+</script>
+
+</head>
+<body>
+	<p>1.1: Bouncing ball with no vectors</p>
+</body>
+</html>
