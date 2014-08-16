@@ -1,0 +1,27 @@
+<html>
+<head>
+  <script language="javascript" type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/p5.js/0.2.5/p5.min.js"></script>
+</head>
+<body>
+	<p>1.6: Normalize vector</p>
+<script>
+
+
+function setup() {
+  createCanvas(640,360);
+};
+
+function draw() {
+  background(255);
+  var mouse = new PVector(mouseX, mouseY);
+  var center = new PVector(width/2, height/2);
+  mouse.sub(center);
+  mouse.normalize();
+  mouse.mult(50);
+  translate(width/2, height/2);
+  line(0,0,mouse.x,mouse.y)
+
+};
+</script>
+</body>
+</html>
