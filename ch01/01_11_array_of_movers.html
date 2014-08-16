@@ -1,0 +1,75 @@
+<html>
+<head>
+  <script language="javascript" type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/p5.js/0.2.5/p5.min.js"></script>
+</head>
+<body>
+	<p>1.11: Array of movers</p>
+
+<script>
+
+// Set up Mover class
+function Mover(){
+  // make initial position random; otherwise, the 20 movers will
+  // all start from the same place, and it will just look like 1 mover.
+  this.position = new PVector(random(width),random(height));
+  this.velocity = new PVector();
+  this.acceleration = new PVector();
+  this.topspeed = 5;
+};
+
+Mover.prototype.update = function() {
+  // Compute a vector that points from position to mouse
+  var mouse = new PVector(mouseX,mouseY);
+  this.acceleration = PVector.sub(mouse,this.position);
+  // Set magnitude of acceleration
+  this.acceleration.setMag(0.2);
+
+  this.velocity.add(this.acceleration);
+  this.velocity.limit(this.topspeed);
+  this.position.add(this.velocity);  
+
+}
+
+Mover.prototype.display = function(){
+  stroke(0);
+  strokeWeight(2);
+  fill(175);
+  ellipse(this.position.x, this.position.y, 16, 16);
+}
+
+Mover.prototype.checkEdges = function(){
+  if (this.position.x > width){
+    this.position.x = 0;
+  }
+  else if (this.position.x < 0){
+    this.position.x = width;
+  }
+
+  if (this.position.y > height){
+    this.position.y = 0;
+  }
+  else if (this.position.y < 0){
+    this.position.y = height;
+  }
+}
+
+var movers = [];
+
+function setup() {
+  createCanvas(640,360);
+  for (var i = 0; i < 20; i++) {
+     movers[i] = new Mover(); 
+  }
+}
+
+function draw() {
+  background(255);
+  for (var i = 0; i < movers.length; i++) {
+    movers[i].update();
+    movers[i].display(); 
+  }
+}
+
+</script>
+</body>
+</html>
