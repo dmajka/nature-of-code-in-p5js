@@ -1,0 +1,82 @@
+<html>
+<head>
+  <script language="javascript" type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/p5.js/0.3.3/p5.js"></script>
+  <script language="javascript" type="text/javascript" src="//cdn.jsdelivr.net/p5.js/0.3.2/addons/p5.dom.js"></script>
+</head>
+<body>
+	<p>3.3: Pointing in the direction of motion</p>
+
+<script>
+
+// Set up Mover class
+var Mover = function(){
+  this.position = createVector(width/2, height/2);
+  this.velocity = createVector();
+  this.acceleration = 0;
+  this.topspeed = 4;
+  this.xoff = 1000;
+  this.yoff = 0;
+  this.r = 16;
+};
+
+Mover.prototype.update = function() {
+  // Compute a vector that points from position to mouse
+  var mouse = createVector(mouseX,mouseY);
+  var dir = p5.Vector.sub(mouse, this.position);
+  dir.normalize();
+  dir.mult(0.5);
+  this.acceleration = dir;
+
+  this.velocity.add(this.acceleration);
+  this.velocity.limit(this.topspeed);
+  this.position.add(this.velocity);  
+
+}
+
+Mover.prototype.display = function(){
+  var angle = this.velocity.heading();
+  stroke(0);
+  strokeWeight(2);
+  fill(175);
+  push(); // push and pop matrix used so shape rotation doesn't affect rest of world
+  rectMode(CENTER);
+
+  translate(this.position.x, this.position.y);
+  rotate(angle);
+  rect(0, 0, 30, 10);
+  pop();
+}
+
+Mover.prototype.checkEdges = function(){
+  if (this.position.x > width){
+    this.position.x = 0;
+  }
+  else if (this.position.x < 0){
+    this.position.x = width;
+  }
+
+  if (this.position.y > height){
+    this.position.y = 0;
+  }
+  else if (this.position.y < 0){
+    this.position.y = height;
+  }
+}
+
+// Call Mover
+var mover;
+
+function setup() {
+  createCanvas(640,360);
+  mover = new Mover();
+};
+
+function draw() {
+  background(240);
+  mover.update();
+  mover.checkEdges();
+  mover.display();
+};
+</script>
+</body>
+</html>

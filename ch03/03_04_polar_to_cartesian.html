@@ -1,0 +1,35 @@
+<html>
+<head>
+  <script language="javascript" type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/p5.js/0.3.3/p5.js"></script>
+  <script language="javascript" type="text/javascript" src="//cdn.jsdelivr.net/p5.js/0.3.2/addons/p5.dom.js"></script>
+</head>
+<body>
+	<p>3.4: Pointing in the direction of motion</p>
+
+<script>
+var r;
+var theta;
+
+
+function setup() {
+  createCanvas(640,360);
+  r = height * 0.45;
+  theta = 0;
+};
+
+function draw() {
+  background(240);
+  translate(width/2, height/2); // translate origin point to center of screen
+  var x = r * cos(theta);
+  var y = r * sin(theta);
+  ellipseMode(CENTER);
+  fill(127);
+  stroke(0);
+  strokeWeight(2);
+  line(0,0,x,y);
+  ellipse(x,y, 16, 16);
+  theta+=0.02;
+};
+</script>
+</body>
+</html>

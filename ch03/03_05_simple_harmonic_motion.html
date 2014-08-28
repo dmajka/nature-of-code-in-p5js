@@ -1,0 +1,32 @@
+<html>
+<head>
+  <script language="javascript" type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/p5.js/0.3.3/p5.js"></script>
+  <script language="javascript" type="text/javascript" src="//cdn.jsdelivr.net/p5.js/0.3.2/addons/p5.dom.js"></script>
+</head>
+<body>
+	<p>3.5: Simple harmonic motion</p>
+
+<script>
+var r;
+var theta;
+
+
+function setup() {
+  createCanvas(640,360);
+};
+
+function draw() {
+  background(240);
+  var period = 120;
+  var amplitude = 100;
+  var x = amplitude * cos(TWO_PI * frameCount / period);
+
+  stroke(0);
+  fill(175);
+  translate(width/2, height/2);
+  line(0,0,x,0);
+  ellipse(x,0, 16, 16);
+};
+</script>
+</body>
+</html>

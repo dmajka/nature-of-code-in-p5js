@@ -1,0 +1,35 @@
+<html>
+<head>
+  <script language="javascript" type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/p5.js/0.3.3/p5.js"></script>
+  <script language="javascript" type="text/javascript" src="//cdn.jsdelivr.net/p5.js/0.3.2/addons/p5.dom.js"></script>
+</head>
+<body>
+	<p>3.8: Static wave as continous line</p>
+
+<script>
+var angle = 0;
+var angleVel = 0.1;
+
+function setup() {
+  createCanvas(640,360);
+  background(230);
+  stroke(0);
+  strokeWeight(2);
+  noFill(2);
+
+  beginShape();
+
+  for (var x=0; x<= width; x+= 5){
+    var y = map(sin(angle), -1, 1, 0, height);
+    vertex(x, y);
+    angle += angleVel;
+  }
+  endShape();
+}
+
+function draw() {
+
+}
+</script>
+</body>
+</html>
