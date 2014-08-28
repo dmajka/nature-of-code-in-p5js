@@ -62,7 +62,7 @@ var Attractor = function(){
 Attractor.prototype.calculateAttraction = function(m){
   var force = p5.Vector.sub(this.position, m.position);
   var distance = force.mag();
-  distance = constrain(distance, 5, 25);
+  distance = constrain(distance, 2, 30);
   force.normalize();
   var strength = (this.G * this.mass * m.mass) / (distance * distance);
   force.mult(strength);
